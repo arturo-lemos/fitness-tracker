@@ -1,8 +1,9 @@
-import { usePage } from "./layout/PageContext";
+import { Routes, Route } from "react-router";
 
-import Register from "./auth/Register";
-import Login from "./auth/Login";
+import Navbar from "./layout/Navbar.jsx";
 import ActivitiesPage from "./activities/ActivitiesPage";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 import Error404 from "./Error404.jsx";
 
 /**
@@ -10,12 +11,17 @@ import Error404 from "./Error404.jsx";
  * discover new routines. Anyone can browse the site and make an account, and users with an
  * account will be able to upload and manage their own activities.
  */
-export default function App() {
-  const { page } = usePage();
 
-  if (page === "register") return <Register />;
-  if (page === "login") return <Login />;
-  if (page === "activities") return <ActivitiesPage />;
-
-  return <Error404 />;
+function App() {
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route index element={<ActivitiesPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="error" element={<Error404 />} />
+      </Routes>
+    </>
+  );
 }
