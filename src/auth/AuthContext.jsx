@@ -22,9 +22,7 @@ export function AuthProvider({ children }) {
       body: JSON.stringify(credentials),
     });
     const result = await response.json();
-    if (!response.ok) {
-      throw Error(result.message);
-    }
+    if (!response.ok) throw Error(result.message);
     setToken(result.token);
   };
 
@@ -35,15 +33,13 @@ export function AuthProvider({ children }) {
       body: JSON.stringify(credentials),
     });
     const result = await response.json();
-    if (!response.ok) {
-      throw Error(result.message);
-    }
+    if (!response.ok) throw Error(result.message);
     setToken(result.token);
   };
 
   const logout = () => setToken(null);
 
-  const value = { token, register, login, logout };
+  const value = { token, register, login, logout }; // 👈 provide all functions
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

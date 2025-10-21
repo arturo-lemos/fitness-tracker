@@ -8,13 +8,11 @@ import { AuthProvider } from "./auth/AuthContext";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <PageProvider>
-      <Layout>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Layout>
-    </PageProvider>
-  </AuthProvider>
+  <StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
+  </StrictMode>
 );
